@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "110551697893",
+    "project_id": "commoncrm-b1c6e",
+    "storage_bucket": "commoncrm-b1c6e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110551697893:android:d13e41dc1c8bfef80bc70c",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPcV4iDcg8rqC9WDLO8qcOzJcAQ_tNq00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
