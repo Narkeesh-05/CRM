@@ -278,11 +278,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       width: 1.5,
                                     ),
                                   ),
-                                  // errorText:
-                                  //     isEmailValid ? null : 'Enter a valid email',
                                 ),
                                 keyboardType: TextInputType.emailAddress,
-                                // onChanged: validateEmail,
                               ),
                               Text(
                                 'Password',

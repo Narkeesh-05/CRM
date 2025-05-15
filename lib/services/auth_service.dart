@@ -52,13 +52,5 @@ class AuthService {
     }
   }
 
-  // Future<void> signOut() async {
-  //   try {
-  //     await _auth.signOut();
-  //   } catch (e) {
-  //     print("Sign out error: $e");
-  //   }
-  // }
-
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 }

@@ -1,7 +1,5 @@
-// import 'package:demo/screens/client/lead_to_client.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../utils/size_config.dart';
 import '../dashboard/dash_board.dart';
 import '../../model/lead_data.dart';
@@ -27,7 +25,6 @@ class Lead_Details extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        // padding: const EdgeInsets.all(16.0),
         padding: EdgeInsets.only(
           top: SizeConfig.heightMultiplier * 2,
           left:

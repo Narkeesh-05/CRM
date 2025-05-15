@@ -3,7 +3,6 @@ import 'package:demo/model/lead_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../utils/size_config.dart';
 import 'lead_details.dart';
 
@@ -25,7 +24,6 @@ class _LeadListState extends State<LeadList> {
     loadLeadDataList();
   }
 
-  // Load saved form data from SharedPreferences
   Future<void> loadLeadDataList() async {
     final sp = await SharedPreferences.getInstance();
     final leadDataListJson = sp.getStringList('leadDataList') ?? [];
@@ -37,7 +35,6 @@ class _LeadListState extends State<LeadList> {
     });
   }
 
-  // Clear saved form data
   Future<void> clearLeadDataList() async {
     final sp = await SharedPreferences.getInstance();
     sp.remove('leadDataList');
@@ -77,7 +74,10 @@ class _LeadListState extends State<LeadList> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-          top: isWeb?SizeConfig.heightMultiplier * 2:SizeConfig.heightMultiplier * 0.5,
+          top:
+              isWeb
+                  ? SizeConfig.heightMultiplier * 2
+                  : SizeConfig.heightMultiplier * 0.5,
           left:
               isWeb
                   ? SizeConfig.widthMultiplier * 34
@@ -93,7 +93,6 @@ class _LeadListState extends State<LeadList> {
           itemBuilder: (context, index) {
             final leadData = leadDataList[index];
             return Card(
-              // margin: EdgeInsets.all(SizeConfig.heightMultiplier * 1),
               child: Container(
                 height:
                     isWeb
@@ -104,10 +103,8 @@ class _LeadListState extends State<LeadList> {
                         ? SizeConfig.widthMultiplier * 45
                         : SizeConfig.widthMultiplier * 90,
                 padding: EdgeInsets.only(
-                  // left: SizeConfig.widthMultiplier * 1,
                   top: SizeConfig.heightMultiplier * 1,
                   bottom: SizeConfig.heightMultiplier * 1,
-                  // right: SizeConfig.widthMultiplier * 1,
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
@@ -122,7 +119,10 @@ class _LeadListState extends State<LeadList> {
                           isWeb
                               ? SizeConfig.widthMultiplier * 5
                               : SizeConfig.widthMultiplier * 15,
-                      height: isWeb?SizeConfig.heightMultiplier * 8:SizeConfig.heightMultiplier*7,
+                      height:
+                          isWeb
+                              ? SizeConfig.heightMultiplier * 8
+                              : SizeConfig.heightMultiplier * 7,
                       child: CircleAvatar(
                         backgroundColor: HexColor("#1E4684"),
                         child: Text(
@@ -136,8 +136,14 @@ class _LeadListState extends State<LeadList> {
                     ),
                     SizedBox(width: SizeConfig.widthMultiplier * 1),
                     SizedBox(
-                      height: isWeb?SizeConfig.heightMultiplier * 9:SizeConfig.heightMultiplier*12,
-                      width: isWeb?SizeConfig.widthMultiplier * 15:SizeConfig.widthMultiplier*60,
+                      height:
+                          isWeb
+                              ? SizeConfig.heightMultiplier * 9
+                              : SizeConfig.heightMultiplier * 12,
+                      width:
+                          isWeb
+                              ? SizeConfig.widthMultiplier * 15
+                              : SizeConfig.widthMultiplier * 60,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -152,7 +158,7 @@ class _LeadListState extends State<LeadList> {
                               color: HexColor("#1E4684"),
                             ),
                           ),
-                          SizedBox(height: SizeConfig.heightMultiplier*0.3,),
+                          SizedBox(height: SizeConfig.heightMultiplier * 0.3),
                           Text(
                             leadData.contactNumber,
                             style: TextStyle(
@@ -177,7 +183,10 @@ class _LeadListState extends State<LeadList> {
                       child: IconButton(
                         icon: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          size: isWeb?SizeConfig.heightMultiplier*4:SizeConfig.heightMultiplier*3,
+                          size:
+                              isWeb
+                                  ? SizeConfig.heightMultiplier * 4
+                                  : SizeConfig.heightMultiplier * 3,
                           color: HexColor("#1E4684"),
                         ),
                         onPressed: () {

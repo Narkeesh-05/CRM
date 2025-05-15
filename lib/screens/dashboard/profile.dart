@@ -1,7 +1,6 @@
 import 'package:demo/screens/lead/new_lead.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../client/new_client.dart';
 
 class MyProfile extends StatelessWidget {

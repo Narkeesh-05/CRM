@@ -1,14 +1,10 @@
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo/model/lead_data.dart';
 import 'package:demo/utils/size_config.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'dart:async';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'lead_list.dart';
 
 class LeadForm extends StatefulWidget {
@@ -100,11 +96,9 @@ class _LeadFormState extends State<LeadForm> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: HexColor(
-                "#b0d8e9",
-              ), //header and selced day background color
-              onPrimary: Colors.white, // titles and
-              onSurface: HexColor("#1E4684"), // Month days , years
+              primary: HexColor("#b0d8e9"),
+              onPrimary: Colors.white,
+              onSurface: HexColor("#1E4684"),
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(foregroundColor: HexColor("#1E4684")),
@@ -112,7 +106,6 @@ class _LeadFormState extends State<LeadForm> {
           ),
           child: child!,
         );
-        //  here you can return  a child
       },
     );
     if (picked != null) {
@@ -138,14 +131,6 @@ class _LeadFormState extends State<LeadForm> {
       ).showSnackBar(SnackBar(content: Text('Error saving lead: $e')));
     }
   }
-  // Save form data to SharedPreferences
-  // Future<void> saveLeadData(LeadData leadData) async {
-  //   final sp = await SharedPreferences.getInstance();
-  //   final leadDataListJson =
-  //       sp.getStringList('leadDataList') ?? []; // Get existing data
-  //   leadDataListJson.add(jsonEncode(leadData.toJson())); // Add new data
-  //   sp.setStringList('leadDataList', leadDataListJson); // Save updated list
-  // }
 
   void _submitAndSaveLead() async {
     if (_leadKey.currentState!.validate()) {
@@ -164,15 +149,6 @@ class _LeadFormState extends State<LeadForm> {
         leadStage: _leadStage ?? '',
         leadReceivedCategory: _leadReceivedCategory ?? '',
       );
-
-      // saveLeadData(leadData).then((_) {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     const SnackBar(content: Text('Lead details are saved successfully!')),
-      //   );
-
-      //   clearLeadFields();
-      // });
-
       try {
         await FirebaseFirestore.instance
             .collection('Leads')
@@ -230,7 +206,6 @@ class _LeadFormState extends State<LeadForm> {
               ),
             ),
             Padding(
-              // padding: const EdgeInsets.all(16.0),
               padding: EdgeInsets.only(
                 top: SizeConfig.heightMultiplier * 2,
                 left:
@@ -979,10 +954,8 @@ class _LeadFormState extends State<LeadForm> {
                                   data: Theme.of(context).copyWith(
                                     colorScheme: ColorScheme.light(
                                       primary: HexColor("#b0d8e9"),
-                                      onPrimary: Colors.white, // titles and
-                                      onSurface: HexColor(
-                                        "#1E4684",
-                                      ), // Month days , years
+                                      onPrimary: Colors.white,
+                                      onSurface: HexColor("#1E4684"),
                                     ),
                                     textButtonTheme: TextButtonThemeData(
                                       style: TextButton.styleFrom(

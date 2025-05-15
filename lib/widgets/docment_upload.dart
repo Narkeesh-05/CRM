@@ -94,8 +94,10 @@ class _Document_UploadState extends State<Document_Upload> {
         yOffset += image.height.toDouble();
       }
 
-      final ui.Image combinedImage =
-      await recorder.endRecording().toImage(200, (300 * pageCount).toInt());
+      final ui.Image combinedImage = await recorder.endRecording().toImage(
+        200,
+        (300 * pageCount).toInt(),
+      );
 
       setState(() {
         _combinedThumbnail = combinedImage;
@@ -129,9 +131,10 @@ class _Document_UploadState extends State<Document_Upload> {
         yOffset += image.height.toDouble();
       }
 
-      final ui.Image combinedImage1 = await recorder
-          .endRecording()
-          .toImage(200, (300 * pageCount1).toInt());
+      final ui.Image combinedImage1 = await recorder.endRecording().toImage(
+        200,
+        (300 * pageCount1).toInt(),
+      );
 
       setState(() {
         _combinedThumbnail1 = combinedImage1;
@@ -187,154 +190,134 @@ class _Document_UploadState extends State<Document_Upload> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Proposal Document',
-          style: TextStyle(
-            color: HexColor("#1E4684"),
-          ),
-        ),
-        SizedBox(height: SizeConfig.heightMultiplier * 1,),
+        Text('Proposal Document', style: TextStyle(color: HexColor("#1E4684"))),
+        SizedBox(height: SizeConfig.heightMultiplier * 1),
         Container(
           height: 80,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 10),
           decoration: BoxDecoration(
-            borderRadius:isWeb
-            ? BorderRadius.all(Radius.circular(5.0))
-        : BorderRadius.all(Radius.circular(15.0)),
+            borderRadius:
+                isWeb
+                    ? BorderRadius.all(Radius.circular(5.0))
+                    : BorderRadius.all(Radius.circular(15.0)),
             border: Border.all(color: HexColor("#1E4684"), width: 1.5),
           ),
-          child:
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            _fileName != null
-                ? SizedBox(
-              height: 65,
-              width: 85,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (_combinedThumbnail != null &&
-                      _fileName!.endsWith('.pdf'))
-                    GestureDetector(
-                      onTap: _openFile,
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          border: Border.all(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _fileName != null
+                  ? SizedBox(
+                    height: 65,
+                    width: 85,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (_combinedThumbnail != null &&
+                            _fileName!.endsWith('.pdf'))
+                          GestureDetector(
+                            onTap: _openFile,
+                            child: Container(
+                              width: 45,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: HexColor("#1E4684")),
+                              ),
+                              child: RawImage(
+                                image: _combinedThumbnail,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        SizedBox(height: SizeConfig.heightMultiplier * 05),
+                        Text(
+                          _fileName!,
+                          style: TextStyle(
+                            fontSize: 8.5,
                             color: HexColor("#1E4684"),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        child: RawImage(
-                          image: _combinedThumbnail,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      ],
                     ),
-                  SizedBox(height: SizeConfig.heightMultiplier * 05,),
-                  Text(
-                    _fileName!,
-                    style: TextStyle(
-                      fontSize: 8.5,
-                      color: HexColor("#1E4684"),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+                  )
+                  : Text('Upload Here', style: TextStyle(color: Colors.grey)),
+              IconButton(
+                icon: Icon(
+                  Icons.upload_file,
+                  size: 25,
+                  color: HexColor("#1E4684"),
+                ),
+                onPressed: pickFile,
               ),
-            )
-                : Text(
-              'Upload Here',
-              style: TextStyle(
-                // color: HexColor("#1E4684"),
-                color: Colors.grey
-              ),
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.upload_file,
-                size: 25,
-                color: HexColor("#1E4684"),
-              ),
-              onPressed: pickFile,
-            ),
-          ]),
-        ),
-        SizedBox(height: SizeConfig.heightMultiplier * 2,),
-        Text(
-          'Invoice Document',
-          style: TextStyle(
-            color: HexColor("#1E4684"),
+            ],
           ),
         ),
-        SizedBox(height: SizeConfig.heightMultiplier * 1,),
+        SizedBox(height: SizeConfig.heightMultiplier * 2),
+        Text('Invoice Document', style: TextStyle(color: HexColor("#1E4684"))),
+        SizedBox(height: SizeConfig.heightMultiplier * 1),
         Container(
           height: 80,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 10),
           decoration: BoxDecoration(
-         borderRadius:isWeb
-    ? BorderRadius.all(Radius.circular(5.0))
-        : BorderRadius.all(Radius.circular(15.0)),
+            borderRadius:
+                isWeb
+                    ? BorderRadius.all(Radius.circular(5.0))
+                    : BorderRadius.all(Radius.circular(15.0)),
             border: Border.all(color: HexColor("#1E4684"), width: 1.5),
           ),
-          child:
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            _fileName1 != null
-                ? SizedBox(
-              height: 65,
-              width: 85,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (_combinedThumbnail1 != null &&
-                      _fileName1!.endsWith('.pdf'))
-                    GestureDetector(
-                      onTap: _openFile1,
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          border: Border.all(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _fileName1 != null
+                  ? SizedBox(
+                    height: 65,
+                    width: 85,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (_combinedThumbnail1 != null &&
+                            _fileName1!.endsWith('.pdf'))
+                          GestureDetector(
+                            onTap: _openFile1,
+                            child: Container(
+                              width: 45,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: HexColor("#1E4684")),
+                              ),
+                              child: RawImage(
+                                image: _combinedThumbnail1,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        SizedBox(height: SizeConfig.heightMultiplier * 05),
+                        Text(
+                          _fileName1!,
+                          style: TextStyle(
+                            fontSize: 8.5,
                             color: HexColor("#1E4684"),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        child: RawImage(
-                          image: _combinedThumbnail1,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      ],
                     ),
-                  SizedBox(height: SizeConfig.heightMultiplier * 05,),
-                  Text(
-                    _fileName1!,
-                    style: TextStyle(
-                      fontSize: 8.5,
-                      color: HexColor("#1E4684"),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+                  )
+                  : Text('Upload Here', style: TextStyle(color: Colors.grey)),
+              IconButton(
+                icon: Icon(
+                  Icons.upload_file,
+                  size: 25,
+                  color: HexColor("#1E4684"),
+                ),
+                onPressed: pickFile1,
               ),
-            )
-                : Text(
-              'Upload Here',
-              style: TextStyle(
-                // color: HexColor("#1E4684"),
-                color: Colors.grey
-              ),
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.upload_file,
-                size: 25,
-                color: HexColor("#1E4684"),
-              ),
-              onPressed: pickFile1,
-            ),
-          ]),
+            ],
+          ),
         ),
       ],
     );
@@ -342,4 +325,4 @@ class _Document_UploadState extends State<Document_Upload> {
 }
 
 final GlobalKey<_Document_UploadState> documentUploadKey =
-GlobalKey<_Document_UploadState>();
+    GlobalKey<_Document_UploadState>();

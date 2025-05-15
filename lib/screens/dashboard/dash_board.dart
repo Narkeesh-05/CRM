@@ -1,14 +1,9 @@
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo/screens/dashboard/profile.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../utils/size_config.dart';
 import 'chart.dart';
-import '../../model/lead_data.dart';
 
 class Dash_Board extends StatefulWidget {
   const Dash_Board({super.key});
@@ -52,24 +47,6 @@ class _Dash_BoardState extends State<Dash_Board> {
       print('Error loading lead data from Firestore: $e');
     }
   }
-  // // Fetch lead data and calculate counts
-  // Future<void> loadLeadData() async {
-  //   final sp = await SharedPreferences.getInstance();
-  //   final leadDataListJson = sp.getStringList('leadDataList') ?? [];
-
-  //   // Parse JSON to LeadData objects
-  //   List<LeadData> leadDataList =
-  //   leadDataListJson.map((json) => LeadData.fromJson(jsonDecode(json))).toList();
-
-  //   // Calculate counts for each status
-  //   setState(() {
-  //     noOfLeads = leadDataList.length;
-  //     closedLeads = leadDataList.where((lead) => lead.leadStage == 'Closed').length;
-  //     processLeads = leadDataList.where((lead) => lead.leadStage == 'Process').length;
-  //     initialLevelLeads = leadDataList.where((lead) => lead.leadStage == 'Initial').length;
-  //     proposalSentLeads = leadDataList.where((lead) => lead.proposalStatus == 'Yes').length;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {

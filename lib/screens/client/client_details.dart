@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../utils/size_config.dart';
 import '../dashboard/dash_board.dart';
 import '../../model/client_data.dart';
@@ -8,7 +7,7 @@ import '../../model/client_data.dart';
 class Client_Details extends StatelessWidget {
   final FormData formData;
 
-  Client_Details({required this.formData});
+  const Client_Details({super.key, required this.formData});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,6 @@ class Client_Details extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        // padding: const EdgeInsets.all(16.0),
         padding: EdgeInsets.only(
           top: SizeConfig.heightMultiplier * 2,
           left:

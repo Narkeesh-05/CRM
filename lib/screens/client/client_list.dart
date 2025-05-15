@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../model/client_data.dart';
 import '../../utils/size_config.dart';
 import 'client_details.dart';
@@ -10,7 +9,7 @@ import 'client_details.dart';
 class Client_List extends StatefulWidget {
   final Function() clearFormFields;
 
-  Client_List({required this.clearFormFields});
+  const Client_List({super.key, required this.clearFormFields});
 
   @override
   _Client_ListState createState() => _Client_ListState();
@@ -25,7 +24,6 @@ class _Client_ListState extends State<Client_List> {
     loadFormDataList();
   }
 
-  // Load saved form data from SharedPreferences
   Future<void> loadFormDataList() async {
     final prefs = await SharedPreferences.getInstance();
     final formDataListJson = prefs.getStringList('formDataList') ?? [];
@@ -37,7 +35,6 @@ class _Client_ListState extends State<Client_List> {
     });
   }
 
-  // Clear saved form data
   Future<void> clearFormDataList() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('formDataList');
@@ -99,18 +96,19 @@ class _Client_ListState extends State<Client_List> {
           itemBuilder: (context, index) {
             final formData = formDataList[index];
             return Card(
-              // margin: const EdgeInsets.all(8),
               child: Container(
                 height:
-                isWeb
-                    ? SizeConfig.heightMultiplier * 10
-                    : SizeConfig.heightMultiplier * 8,
+                    isWeb
+                        ? SizeConfig.heightMultiplier * 10
+                        : SizeConfig.heightMultiplier * 8,
                 width:
-                isWeb
-                    ? SizeConfig.widthMultiplier * 45
-                    : SizeConfig.widthMultiplier * 90,
-                padding: EdgeInsets.only(top: SizeConfig.heightMultiplier * 1,
-                  bottom: SizeConfig.heightMultiplier * 1,),
+                    isWeb
+                        ? SizeConfig.widthMultiplier * 45
+                        : SizeConfig.widthMultiplier * 90,
+                padding: EdgeInsets.only(
+                  top: SizeConfig.heightMultiplier * 1,
+                  bottom: SizeConfig.heightMultiplier * 1,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: Colors.white,
@@ -121,10 +119,13 @@ class _Client_ListState extends State<Client_List> {
                     Container(
                       alignment: Alignment.center,
                       width:
-                      isWeb
-                          ? SizeConfig.widthMultiplier * 5
-                          : SizeConfig.widthMultiplier * 15,
-                      height: isWeb?SizeConfig.heightMultiplier * 8:SizeConfig.heightMultiplier*7,
+                          isWeb
+                              ? SizeConfig.widthMultiplier * 5
+                              : SizeConfig.widthMultiplier * 15,
+                      height:
+                          isWeb
+                              ? SizeConfig.heightMultiplier * 8
+                              : SizeConfig.heightMultiplier * 7,
                       child: CircleAvatar(
                         backgroundColor: HexColor("#1E4684"),
                         child: Text(
@@ -138,42 +139,57 @@ class _Client_ListState extends State<Client_List> {
                     ),
                     SizedBox(width: SizeConfig.widthMultiplier * 1),
                     SizedBox(
-                      height: isWeb?SizeConfig.heightMultiplier * 9:SizeConfig.heightMultiplier*12,
-                      width: isWeb?SizeConfig.widthMultiplier * 15:SizeConfig.widthMultiplier*60,
+                      height:
+                          isWeb
+                              ? SizeConfig.heightMultiplier * 9
+                              : SizeConfig.heightMultiplier * 12,
+                      width:
+                          isWeb
+                              ? SizeConfig.widthMultiplier * 15
+                              : SizeConfig.widthMultiplier * 60,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${formData.clientName}',
+                            formData.clientName,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: isWeb
-                                  ? SizeConfig.heightMultiplier * 3
-                                  : SizeConfig.heightMultiplier * 2,
+                              fontSize:
+                                  isWeb
+                                      ? SizeConfig.heightMultiplier * 3
+                                      : SizeConfig.heightMultiplier * 2,
                               color: HexColor("#1E4684"),
                             ),
-                          ),  SizedBox(height: SizeConfig.heightMultiplier*0.3,),
+                          ),
+                          SizedBox(height: SizeConfig.heightMultiplier * 0.3),
                           Text(
                             formData.contactNumber,
-                            style: TextStyle(fontSize: isWeb
-                                ? SizeConfig.heightMultiplier * 2
-                                : SizeConfig.heightMultiplier * 1.7,),
+                            style: TextStyle(
+                              fontSize:
+                                  isWeb
+                                      ? SizeConfig.heightMultiplier * 2
+                                      : SizeConfig.heightMultiplier * 1.7,
+                            ),
                           ),
                         ],
                       ),
                     ),
                     SizedBox(
                       width:
-                      isWeb
-                          ? SizeConfig.widthMultiplier * 5
-                          : SizeConfig.widthMultiplier * 5,
-                    ),                    SizedBox(
+                          isWeb
+                              ? SizeConfig.widthMultiplier * 5
+                              : SizeConfig.widthMultiplier * 5,
+                    ),
+                    SizedBox(
                       height: SizeConfig.heightMultiplier * 7,
                       width: SizeConfig.widthMultiplier * 5,
                       child: IconButton(
                         icon: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          size: isWeb?SizeConfig.heightMultiplier*4:SizeConfig.heightMultiplier*3,
+                          size:
+                              isWeb
+                                  ? SizeConfig.heightMultiplier * 4
+                                  : SizeConfig.heightMultiplier * 3,
                           color: HexColor("#1E4684"),
                         ),
                         onPressed: () {
